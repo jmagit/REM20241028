@@ -1,5 +1,8 @@
 package com.example.ioc.basico;
 
+import org.springframework.stereotype.Service;
+
+//@Service
 public class ServicioImpl implements Servicio {
 	private final Repositorio dao;
 	

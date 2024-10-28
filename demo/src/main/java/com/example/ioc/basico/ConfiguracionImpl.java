@@ -1,7 +1,8 @@
 package com.example.ioc.basico;
 
-import com.example.ioc.basico.Configuracion;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConfiguracionImpl implements Configuracion {
 	private int contador = 0;
 	

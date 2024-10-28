@@ -1,8 +1,8 @@
 package com.example.ioc.basico;
 
-import com.example.ioc.basico.Configuracion;
-import com.example.ioc.basico.Repositorio;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RepositorioImpl implements Repositorio {
 	private final Configuracion configuracion;
 	
