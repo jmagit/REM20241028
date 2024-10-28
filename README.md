@@ -10,6 +10,7 @@
 
 ## Documentación
 
+- <https://docs.spring.io/spring-framework/reference/>
 - <https://docs.spring.io/spring-boot/docs/current/reference/html/>
 - <https://docs.spring.io/spring-data/commons/docs/current/reference/html/>
 - <https://docs.spring.io/spring-data/jpa/docs/current/reference/html/>
@@ -57,7 +58,7 @@
 
 - docker run -d --name mysql-sakila -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 jamarton/mysql-sakila
 - docker run -d --name mongodb -p 27017:27017 mongo
-- docker run --name redis -p 6379:6379 -d redis
+- docker run -d --name redis -p 6379:6379 -p 6380:8001 redis/redis-stack:latest
 
 ### Cliente de bases de datos
 
