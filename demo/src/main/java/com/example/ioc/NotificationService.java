@@ -1,12 +1,17 @@
 package com.example.ioc;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.lang.NonNull;
 
 public interface NotificationService {
 
 	List<String> getListado();
-
-	void add(String message);
+	
+	Optional<String> getMessage(int index);
+	
+	void add(@NonNull String message);
 
 	void delete(int index);
 

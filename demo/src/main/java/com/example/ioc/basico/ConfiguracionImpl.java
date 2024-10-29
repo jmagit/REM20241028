@@ -2,12 +2,14 @@ package com.example.ioc.basico;
 
 import org.springframework.stereotype.Component;
 
+import com.example.ioc.NotificationService;
+
 @Component
 public class ConfiguracionImpl implements Configuracion {
 	private int contador = 0;
 	
-	public ConfiguracionImpl() {
-		System.err.println(getClass().getSimpleName() + " Constructor");
+	public ConfiguracionImpl(NotificationService notify) {
+		notify.add(getClass().getSimpleName() + " Constructor");
 	}
 
 	@Override

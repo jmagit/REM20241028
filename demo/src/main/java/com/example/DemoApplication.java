@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.EventListener;
 
 import com.example.ioc.NotificationService;
 import com.example.ioc.NotificationServiceImpl;
@@ -21,6 +22,7 @@ import com.example.ioc.basico.Cualifica;
 import com.example.ioc.basico.RepositorioImpl;
 import com.example.ioc.basico.Servicio;
 import com.example.ioc.basico.ServicioImpl;
+import com.example.ioc.multiple.ConstructorConValores;
 import com.example.ioc.multiple.Sender;
 
 @SpringBootApplication
@@ -42,6 +44,24 @@ public class DemoApplication implements CommandLineRunner {
 //		contexto.getBean(NotificationService.class).getListado().forEach(System.out::println);
 //		contexto.getBean(Sender.class).send("un mensaje");
 		contexto.close();
+	}
+
+	@Bean
+	public CommandLineRunner demoAmbito(Servicio srv, NotificationService notificaciones, ConstructorConValores kk) {
+		return args -> {
+			notificaciones.add("desde App");
+			System.out.println(" ---------------- ");
+			notificaciones.getListado().forEach(System.out::println);
+			System.out.println(" ---------------- ");
+			System.out.println(srv);
+			System.out.println(" ---------------- ");
+			srv.add();
+			var cad = notificaciones.getMessage(0);
+			System.out.println(cad.orElse("Vacio"));
+			kk.titulo("sr", "amarillo");
+			kk.titulo("amarillo");
+//			kk.titulo(null, "amarillo");
+		};
 	}
 
 //	@Bean
@@ -71,13 +91,13 @@ public class DemoApplication implements CommandLineRunner {
 //	@Autowired
 //	Rango rango;
 
-	@Bean
-	public CommandLineRunner cotilla(@Value("${mi.valor:valor por defecto}") String miValor, Rango rango) {
-		return args -> {
-			System.err.println("-----> El valor es '" + miValor + "'");
-			System.err.println("-----> El valor es '" + rango + "'");
-		};
-	}
+//	@Bean
+//	public CommandLineRunner cotilla(@Value("${mi.valor:valor por defecto}") String miValor, Rango rango) {
+//		return args -> {
+//			System.err.println("-----> El valor es '" + miValor + "'");
+//			System.err.println("-----> El valor es '" + rango + "'");
+//		};
+//	}
 
 //	@Bean
 //	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
@@ -93,6 +113,11 @@ public class DemoApplication implements CommandLineRunner {
 //
 //		};
 //	}
+	
+	@EventListener
+	void onEvent(String event) {
+		System.err.println("EVENTO: " + event);
+	}
 
 
 }
