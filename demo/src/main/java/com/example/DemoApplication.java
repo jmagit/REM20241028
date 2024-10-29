@@ -48,21 +48,29 @@ public class DemoApplication implements CommandLineRunner {
 		contexto.close();
 	}
 
+//	@Bean
+//	public CommandLineRunner demoAmbito(Servicio srv, NotificationService notificaciones, ConstructorConValores kk) {
+//		return args -> {
+//			notificaciones.add("desde App");
+//			System.out.println(" ---------------- ");
+//			notificaciones.getListado().forEach(System.out::println);
+//			System.out.println(" ---------------- ");
+//			System.out.println(srv);
+//			System.out.println(" ---------------- ");
+//			srv.add();
+//			var cad = notificaciones.getMessage(0);
+//			System.out.println(cad.orElse("Vacio"));
+//			kk.titulo("sr", "amarillo");
+//			kk.titulo("amarillo");
+////			kk.titulo(null, "amarillo");
+//		};
+//	}
+
 	@Bean
-	public CommandLineRunner demoAmbito(Servicio srv, NotificationService notificaciones, ConstructorConValores kk) {
+	public CommandLineRunner demoAOP(Servicio srv) {
 		return args -> {
-			notificaciones.add("desde App");
-			System.out.println(" ---------------- ");
-			notificaciones.getListado().forEach(System.out::println);
-			System.out.println(" ---------------- ");
-			System.out.println(srv);
-			System.out.println(" ---------------- ");
 			srv.add();
-			var cad = notificaciones.getMessage(0);
-			System.out.println(cad.orElse("Vacio"));
-			kk.titulo("sr", "amarillo");
-			kk.titulo("amarillo");
-//			kk.titulo(null, "amarillo");
+//			System.err.println(srv.getClass());
 		};
 	}
 
@@ -116,10 +124,10 @@ public class DemoApplication implements CommandLineRunner {
 //		};
 //	}
 	
-	@EventListener
-	void onEvent(String event) {
-		System.err.println("EVENTO: " + event);
-	}
+//	@EventListener
+//	void onEvent(String event) {
+//		System.err.println("EVENTO: " + event);
+//	}
 
 
 }
