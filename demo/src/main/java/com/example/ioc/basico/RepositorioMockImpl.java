@@ -4,12 +4,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Profile("default")
-public class RepositorioImpl implements Repositorio {
+@Profile("test")
+public class RepositorioMockImpl implements Repositorio {
 	private final Configuracion configuracion;
 	
 	
-	public RepositorioImpl(Configuracion configuracion) {
+	public RepositorioMockImpl(Configuracion configuracion) {
 		System.err.println(getClass().getSimpleName() + " Constructor");
 		this.configuracion = configuracion;
 		configuracion.config();

@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("notificaciones")
 public class NotificationServiceImpl implements NotificationService {
 	private List<String> listado = new ArrayList<>();
 	

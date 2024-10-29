@@ -1,5 +1,8 @@
 package com.example.ioc.multiple;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class FileSender implements Sender {
 
 	@Override

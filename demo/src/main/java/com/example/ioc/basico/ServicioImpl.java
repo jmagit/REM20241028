@@ -1,8 +1,12 @@
 package com.example.ioc.basico;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
+//@Primary
+@Profile("default")
 public class ServicioImpl implements Servicio {
 	private final Repositorio dao;
 	
