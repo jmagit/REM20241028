@@ -2,7 +2,9 @@ package com.example;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.ioc.NotificationService;
 import com.example.ioc.NotificationServiceImpl;
+import com.example.ioc.Rango;
 import com.example.ioc.basico.ClaseNoComponente;
 import com.example.ioc.basico.ConfiguracionImpl;
 import com.example.ioc.basico.Cualifica;
@@ -56,10 +59,23 @@ public class DemoApplication implements CommandLineRunner {
 //			comoQuiero.send("un mensaje");
 //		};
 //	}
+//	@Bean
+//	public CommandLineRunner demoProfile(Servicio srv) {
+//		return args -> {
+//			srv.add();
+//		};
+//	}
+	
+//	@Value("${mi.valor:valor por defecto}")
+//	String miValor;
+//	@Autowired
+//	Rango rango;
+
 	@Bean
-	public CommandLineRunner demoProfile(Servicio srv) {
+	public CommandLineRunner cotilla(@Value("${mi.valor:valor por defecto}") String miValor, Rango rango) {
 		return args -> {
-			srv.add();
+			System.err.println("-----> El valor es '" + miValor + "'");
+			System.err.println("-----> El valor es '" + rango + "'");
 		};
 	}
 

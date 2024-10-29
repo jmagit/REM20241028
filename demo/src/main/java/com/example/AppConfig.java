@@ -1,6 +1,7 @@
 package com.example;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -46,4 +47,16 @@ public class AppConfig {
 	Sender twittea(TwitterSender item) {
 		return item;
 	}
+	
+	@Bean int version() { 
+		return 22; 
+	}
+	@Bean() String autor() { 
+		return "Yo mismo"; 
+	}
+	
+	@Bean() String otroAutor(@Value("${info.app.author:(Anonimo)}") String nombre) { 
+		return nombre; 
+	}
+
 }
