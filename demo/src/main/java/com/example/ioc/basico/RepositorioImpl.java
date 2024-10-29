@@ -8,7 +8,7 @@ public class RepositorioImpl implements Repositorio {
 	
 	
 	public RepositorioImpl(Configuracion configuracion) {
-		System.err.println("RepositorioImpl Constructor");	
+		System.err.println(getClass().getSimpleName() + " Constructor");
 		this.configuracion = configuracion;
 		configuracion.config();
 	}

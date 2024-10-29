@@ -9,7 +9,7 @@ public class ServicioImpl implements Servicio {
 	
 	public ServicioImpl(Repositorio dao) {
 		this.dao = dao;
-		System.err.println("ServicioImpl Constructor");	
+		System.err.println(getClass().getSimpleName() + " Constructor");
 	}
 
 

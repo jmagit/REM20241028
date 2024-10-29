@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class ServicioMockImpl implements Servicio {
 	
 	public ServicioMockImpl() {
-		System.err.println("ServicioImpl falso");	
+		System.err.println(getClass().getSimpleName() + " Constructor");
 	}
 
 

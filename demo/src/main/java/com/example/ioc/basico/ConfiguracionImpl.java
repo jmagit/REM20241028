@@ -7,7 +7,7 @@ public class ConfiguracionImpl implements Configuracion {
 	private int contador = 0;
 	
 	public ConfiguracionImpl() {
-		System.err.println("ConfiguracionImpl Constructor");	
+		System.err.println(getClass().getSimpleName() + " Constructor");
 	}
 
 	@Override
