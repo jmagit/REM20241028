@@ -1,5 +1,7 @@
 package com.example;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.EventListener;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.JdbcClient;
 
 import com.example.aop.AuthenticationService;
 import com.example.aop.introductions.Visible;
@@ -146,7 +151,79 @@ public class DemoApplication implements CommandLineRunner {
 //
 //		};
 //	}
-	
+
+//	@Bean
+//	public CommandLineRunner demoJDBC(JdbcTemplate db, JdbcClient client) {
+//		return args -> {
+//			record Vet(int id, String firstName, String lastName) {}
+//			class VetRowMapper implements RowMapper<Vet> {
+//
+//				@Override
+//				public Vet mapRow(ResultSet row, int index) throws SQLException {
+//					return new Vet(row.getInt(1), row.getString("first_name"), row.getString(3));
+//				}
+//				
+//			}
+////			try {
+//				System.out.println("Nº Veterinarios: " + db.queryForObject("select count(*) from vets", Integer.class));
+//				var vet = db.queryForObject(
+//						"select * from vets where id=?", 
+//						(row, index) -> new Vet(row.getInt(1), row.getString("first_name"), row.getString(3))
+//						, 2);
+//				System.out.println(vet);
+//				var newId = db.update(
+//						"insert into vets(first_name,last_name) values(?, ?)", 
+//						"Pepito", "Grillo");
+//				vet = db.queryForObject(
+//						"select * from vets where id=?", 
+//						new VetRowMapper()
+//						, newId);
+//				System.out.println(vet);
+//				db.query(
+//						"select * from vets", 
+//						new VetRowMapper()
+//						)
+//				.forEach(System.out::println);
+//				
+////			} catch (SQLException e) {
+////				System.err.println(e.getMessage());
+////			}
+//		};
+//	}
+	@Bean
+	public CommandLineRunner demoJdbcClient(JdbcClient db) {
+		return args -> {
+			record Vet(int id, String firstName, String lastName) {}
+			System.out.println("Nº Veterinarios: " + db
+					.sql("select count(*) from vets")
+					.query(Integer.class)
+					.single());
+			System.out.println("Nº Veterinarios: " + db
+					.sql("select * from vets where id=?")
+					.param(3)
+					.query(Vet.class)
+					.single());
+			var reg = new Vet(0, "Pepito", "Grillo");
+			db.sql("insert into vets(first_name,last_name) values(:firstName, :lastName)")		
+				.paramSource(reg)
+				.update();
+
+			db.sql("select * from vets")
+				.query(Vet.class)
+				.list()
+				.forEach(System.out::println);
+			System.out.println("Nº Veterinarios: " + db
+					.sql("select * from vets where id=:id_vet")
+					.param("id_vet", 6)
+					.query(Vet.class)
+					.single());
+				
+//			} catch (SQLException e) {
+//				System.err.println(e.getMessage());
+//			}
+		};
+	}
+
 //	@EventListener
 //	void onEvent(String event) {
 //		System.err.println("EVENTO: " + event);
