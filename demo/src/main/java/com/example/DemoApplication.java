@@ -15,6 +15,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.EventListener;
 
 import com.example.aop.AuthenticationService;
+import com.example.aop.introductions.Visible;
 import com.example.ioc.NotificationService;
 import com.example.ioc.NotificationServiceImpl;
 import com.example.ioc.Rango;
@@ -70,17 +71,29 @@ public class DemoApplication implements CommandLineRunner {
 	@Bean
 	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk, AuthenticationService auth) {
 		return args -> {
+//			try {
+////				srv.add();
+//				kk.titulo("algo");
+//				kk.titulo("sr", "amarillo");
+//				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
+//			} catch (Exception e) {
+//				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
+//			}
+//			auth.login();
+//			srv.add();
+//			if(srv instanceof Visible v) {
+//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+//				v.mostrar();
+//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+//				v.ocultar();
+//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+//			}
+//			System.err.println(srv.getClass());
 			try {
-				srv.add();
-				kk.titulo("algo");
-				kk.titulo("sr", "amarillo");
-				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
+				srv.get();
 			} catch (Exception e) {
 				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
 			}
-			auth.login();
-			srv.add();
-//			System.err.println(srv.getClass());
 		};
 	}
 

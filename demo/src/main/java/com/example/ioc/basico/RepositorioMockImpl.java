@@ -3,8 +3,9 @@ package com.example.ioc.basico;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-@Repository
-@Profile("test")
+import com.example.ioc.RepositoryMock;
+
+@RepositoryMock
 public class RepositorioMockImpl implements Repositorio {
 	private final Configuracion configuracion;
 	

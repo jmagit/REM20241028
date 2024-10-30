@@ -17,4 +17,11 @@ public class ServicioMockImpl implements Servicio {
 		System.err.println("doble de pruebas");	
 	}
 
+
+	@Override
+	public void get() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

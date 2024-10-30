@@ -18,7 +18,7 @@ public class LoggerAspect {
 		log.warn(jp.getSignature() + " executing.");
 	}
 	
-	@After("@annotation(com.example.aop.Logged")
+	@After("@annotation(com.example.aop.Logged)")
 	public void registerLogged(JoinPoint jp) {
 		log.warn(jp.getSignature() + " executed.");
 	}

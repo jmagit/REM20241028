@@ -30,4 +30,11 @@ public class ServicioImpl implements Servicio {
 		return String.join(" -> ", notify.getListado());
 	}
 
+
+	@Override
+	public void get() {
+		add();
+		
+	}
+
 }
