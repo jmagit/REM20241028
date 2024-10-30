@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.ioc.NotificationService;
 
 @Repository
-@Profile("default")
+//@Profile("default")
 public class RepositorioImpl implements Repositorio {
 	private final Configuracion configuracion;
 	@Autowired 
