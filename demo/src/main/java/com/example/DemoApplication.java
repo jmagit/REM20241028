@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.EventListener;
 
+import com.example.aop.AuthenticationService;
 import com.example.ioc.NotificationService;
 import com.example.ioc.NotificationServiceImpl;
 import com.example.ioc.Rango;
@@ -67,16 +68,18 @@ public class DemoApplication implements CommandLineRunner {
 //	}
 
 	@Bean
-	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk) {
+	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk, AuthenticationService auth) {
 		return args -> {
-			srv.add();
 			try {
+				srv.add();
 				kk.titulo("algo");
 				kk.titulo("sr", "amarillo");
 				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
 			} catch (Exception e) {
-				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
 			}
+			auth.login();
+			srv.add();
 //			System.err.println(srv.getClass());
 		};
 	}

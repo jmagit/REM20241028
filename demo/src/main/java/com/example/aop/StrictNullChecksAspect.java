@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class StrictNullChecksAspect {
 	@Before("execution(public * com.example..*.*(*,..))")
 	public void nullArgument(JoinPoint jp) {
-		System.err.println("-------------> cotilleo: " + jp.getSignature());
 		for(var i = 0; i < jp.getArgs().length; i++) {
 			if(Objects.isNull(jp.getArgs()[i])) 
 				throw new IllegalArgumentException(String.format("Illegal argument %d in method %s", i + 1, jp.getSignature()));
