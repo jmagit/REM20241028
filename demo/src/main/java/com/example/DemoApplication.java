@@ -41,13 +41,13 @@ public class DemoApplication implements CommandLineRunner {
 		System.err.println("Aplicacion arrancada");
 		
 //		Servicio srv = new ServicioImpl(new RepositorioImpl(new ConfiguracionImpl()));
-		var contexto = new AnnotationConfigApplicationContext(AppConfig.class);
-//		Servicio srv = contexto.getBean(Servicio.class);
-//		srv.add();
-//		contexto.getBean(ClaseNoComponente.class).saluda();
-//		contexto.getBean(NotificationService.class).getListado().forEach(System.out::println);
-//		contexto.getBean(Sender.class).send("un mensaje");
-		contexto.close();
+//		var contexto = new AnnotationConfigApplicationContext(AppConfig.class);
+////		Servicio srv = contexto.getBean(Servicio.class);
+////		srv.add();
+////		contexto.getBean(ClaseNoComponente.class).saluda();
+////		contexto.getBean(NotificationService.class).getListado().forEach(System.out::println);
+////		contexto.getBean(Sender.class).send("un mensaje");
+//		contexto.close();
 	}
 
 //	@Bean
@@ -68,34 +68,34 @@ public class DemoApplication implements CommandLineRunner {
 //		};
 //	}
 
-	@Bean
-	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk, AuthenticationService auth) {
-		return args -> {
+//	@Bean
+//	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk, AuthenticationService auth) {
+//		return args -> {
+////			try {
+//////				srv.add();
+////				kk.titulo("algo");
+////				kk.titulo("sr", "amarillo");
+////				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
+////			} catch (Exception e) {
+////				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
+////			}
+////			auth.login();
+////			srv.add();
+////			if(srv instanceof Visible v) {
+////				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+////				v.mostrar();
+////				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+////				v.ocultar();
+////				System.err.println(v.isVisible() ? "Visible" : "Invisible");
+////			}
+////			System.err.println(srv.getClass());
 //			try {
-////				srv.add();
-//				kk.titulo("algo");
-//				kk.titulo("sr", "amarillo");
-//				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
+//				srv.get();
 //			} catch (Exception e) {
 //				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
 //			}
-//			auth.login();
-//			srv.add();
-//			if(srv instanceof Visible v) {
-//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
-//				v.mostrar();
-//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
-//				v.ocultar();
-//				System.err.println(v.isVisible() ? "Visible" : "Invisible");
-//			}
-//			System.err.println(srv.getClass());
-			try {
-				srv.get();
-			} catch (Exception e) {
-				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage() + (e.getCause()!=null ? " Motivo: " + e.getCause().getMessage() : ""));
-			}
-		};
-	}
+//		};
+//	}
 
 //	@Bean
 //	public CommandLineRunner demo1(Sender fileSender, NotificationService notificaciones) {
