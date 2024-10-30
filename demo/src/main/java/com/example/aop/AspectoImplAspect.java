@@ -16,10 +16,10 @@ public class AspectoImplAspect {
 	@Pointcut("execution(public * com.example.ioc..*.*(..))")
 	public void miPuntoDeCorte() {}
 
-	@Before("miPuntoDeCorte()")
-	public void consejoAntesDelMetodo(JoinPoint jp) {
-		System.out.println(">>> Soy un consejo antesDelMetodo " + jp.getSignature());
-	}
+//	@Before("miPuntoDeCorte()")
+//	public void consejoAntesDelMetodo(JoinPoint jp) {
+//		System.out.println(">>> Soy un consejo antesDelMetodo " + jp.getSignature());
+//	}
 	
 //	@After("miPuntoDeCorte()")
 //	public void consejoDespuesDelMetodo(JoinPoint jp) {
