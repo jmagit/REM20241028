@@ -67,9 +67,16 @@ public class DemoApplication implements CommandLineRunner {
 //	}
 
 	@Bean
-	public CommandLineRunner demoAOP(Servicio srv) {
+	public CommandLineRunner demoAOP(Servicio srv, ConstructorConValores kk) {
 		return args -> {
 			srv.add();
+			try {
+				kk.titulo("algo");
+				kk.titulo("sr", "amarillo");
+				System.out.println(kk.dameValor("un valor").orElse("sin valor"));
+			} catch (Exception e) {
+				System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+			}
 //			System.err.println(srv.getClass());
 		};
 	}

@@ -1,5 +1,7 @@
 package com.example.ioc.multiple;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Component;
 
 import com.example.ioc.NotificationService;
@@ -20,8 +22,12 @@ public class ConstructorConValores {
 	public void titulo(String autor) {
 		System.err.println(autor.toUpperCase());
 	}
-	
-	public String dameValor(String autor) {
-		return null;		
+
+//	public String dameValor(String autor) {
+//		return Optional.empty();		
+//	}
+
+	public Optional<String> dameValor(String autor) {
+		return Optional.empty();		
 	}
 }
