@@ -13,11 +13,15 @@ public class ConstructorConValores {
 		// System.err.println("Version: " + version + " Autor: " + otroAutor);
 	}
 	
-	public void titulo(@NonNull String tratamiento, String autor) {
+	public void titulo(String tratamiento, String autor) {
 		System.err.println(tratamiento.toUpperCase() + " " + autor.toUpperCase());
 	}
 		
-	public void titulo(@NonNull String autor) {
+	public void titulo(String autor) {
 		System.err.println(autor.toUpperCase());
+	}
+	
+	public String dameValor(String autor) {
+		return null;		
 	}
 }
