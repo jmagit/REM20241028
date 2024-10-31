@@ -1,13 +1,18 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 
+import com.example.domains.entities.Owner;
 import com.example.domains.entities.Veterinario;
+import com.example.domains.repositories.PropietariosRepository;
 import com.example.domains.repositories.VeterinariosRepository;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication
 public class DemoDataApplication implements CommandLineRunner {
@@ -15,10 +20,24 @@ public class DemoDataApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoDataApplication.class, args);
 	}
-
+	
+	@Autowired
+	PropietariosRepository dao;
+	
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		System.err.println("Aplicación arrancada");
+//		dao.findAll().forEach(System.out::println);
+		var p = dao.findById(3).get();
+		System.out.println(p);
+//		p.getPets().forEach(System.out::println);
+		p = new Owner("Pepito", "Grillo");
+		if(p.isInvalid()) {
+			System.err.println(p.getErrorsMessage());
+		} else {
+			System.out.println(dao.save(p));
+		}
 	}
 
 //	@Bean
@@ -57,4 +76,14 @@ public class DemoDataApplication implements CommandLineRunner {
 			dao.findAll((root, query, builder) -> builder.greaterThan(root.get("id"), 4)).forEach(System.out::println);
 		};
 	}
+//	@Bean
+//	@Transactional
+//	CommandLineRunner dependencias(PropietariosRepository dao) {
+//		return (args) -> {
+////			dao.findAll().forEach(System.out::println);
+//			var p = dao.findById(3).get();
+//			System.out.println(p);
+//			p.getPets().forEach(System.out::println);
+//		};
+//	}
 }
