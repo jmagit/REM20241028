@@ -2,6 +2,8 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,8 +30,8 @@ public class Vet implements Serializable {
 	private String lastName;
 
 	//bi-directional many-to-many association to Specialty
-	@ManyToMany(mappedBy="vets")
-	private List<Specialty> specialties;
+	@ManyToMany(mappedBy="vets", fetch = FetchType.EAGER)
+	private List<Specialty> specialties = new ArrayList<>();
 
 	public Vet() {
 	}
